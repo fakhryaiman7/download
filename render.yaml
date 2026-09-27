@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: videodrop-worker
+    runtime: docker
+    dockerfilePath: apps/worker/Dockerfile
+    dockerContext: .
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      - key: PORT
+        value: 8080
+      - key: WORKER_PORT
+        value: 8080
+      - key: WORKER_HOST
+        value: 0.0.0.0
+      - key: DOWNLOADER_API_KEY
+        value: dev-secret-api-key-12345
+      - key: MAX_CONCURRENT_JOBS
+        value: 2
+      - key: JOB_TTL_MINUTES
+        value: 30
+      - key: TEMP_STORAGE_DIR
+        value: /tmp/video-downloader
