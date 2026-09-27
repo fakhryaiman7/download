@@ -1,0 +1,25 @@
+{
+  "name": "videodrop-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev --workspace=@videodrop/worker\" \"npm run dev --workspace=@videodrop/web\"",
+    "dev:web": "npm run dev --workspace=@videodrop/web",
+    "dev:worker": "npm run dev --workspace=@videodrop/worker",
+    "build": "npm run build --workspace=@videodrop/shared && npm run build --workspace=@videodrop/worker && npm run build --workspace=@videodrop/web",
+    "build:shared": "npm run build --workspace=@videodrop/shared",
+    "build:worker": "npm run build --workspace=@videodrop/worker",
+    "build:web": "npm run build --workspace=@videodrop/web",
+    "test": "npm run test --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "typescript": "^5.8.2"
+  }
+}
